@@ -1,0 +1,20 @@
+body { 
+    color: black;
+}
+.container{
+    display: flex;
+    margin: auto;
+    background-color: #ECEDFC;
+}
+.board-container{
+    min-width: 600px;
+    min-height: 400px;
+    padding: 32px;
+}
+.board-title{
+    color: #4247E5;
+}
+tbody{
+    display: flex;
+    justify-content: space-between;
+}
