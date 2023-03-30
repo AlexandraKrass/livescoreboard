@@ -8,6 +8,7 @@ export const matches = [
         isFinished: false,
         homeScore: 0,
         awayScore: 0,
+        goalsHomeTeam: [],
         goalsAwayTeam: [5, 17, 26, 32, 64]
     },    
     {

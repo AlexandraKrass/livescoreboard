@@ -1,24 +1,17 @@
 //react
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 //constants
 import { TIME_MATCH } from '../matches'
+import { Team } from '../constants'
 
 import './LiveMatch.css';
 
 interface MatchProps {
-    id: number
-    homeTeam: string
-    awayTeam: string
-    homeScore: number
-    awayScore: number
-    goalsHomeTeam?: number[]
-    goalsAwayTeam?: number[]
-    isFinished: boolean
     handleMatch(id: number, homeScoreTeam: number, awayScoreTeam: number): void 
 }
 
-const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, isFinished, handleMatch }: MatchProps) => {
+const LiveMatch = ({ idMatch, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, isFinished, handleMatch}: Team & MatchProps) => {
     const dataGoalsHome = new Set(goalsHomeTeam);
     const dataGoalsAway = new Set(goalsAwayTeam);
 
@@ -31,16 +24,16 @@ const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam
     const incrementHomeScore = useCallback(
         (homeScoreTeam: number) => homeScoreTeam + 1, []
     );
-      
+
     const incrementAwayScore = useCallback(
         (awayScoreTeam: number) => awayScoreTeam + 1, []
     );
 
     useEffect(() => {
-        if (seconds >= TIME_MATCH){
+        if (seconds >= TIME_MATCH) {
             stopTimer();
             finishGame();
-        } 
+        }
 
         if (dataGoalsHome.has(seconds)) {
             setScoreHomTeam(incrementHomeScore);
@@ -65,14 +58,13 @@ const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam
     };
 
     const finishGame = () => {
-        handleMatch(id, homeScoreTeam, awayScoreTeam)
+        handleMatch(idMatch, homeScoreTeam, awayScoreTeam)
     };
 
     return (
         <div className="match-item">
             <p className="match-info">{homeTeam} - {awayTeam}: {homeScoreTeam}–{awayScoreTeam}</p>
-            { isFinished ? 
-
+            {isFinished ?
                 <p className="match-finished">Finished</p>
                 :
                 <button className="match-btn-started" onClick={startTimer}>Start game</button>

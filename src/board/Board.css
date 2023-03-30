@@ -3,10 +3,12 @@ body {
 }
 .container{
     display: flex;
+    flex-direction: column;
     margin: auto;
-    background-color: #ECEDFC;
+
 }
 .board-container{
+    background-color: #ECEDFC;
     min-width: 760px;
     min-height: 400px;
     padding: 32px;

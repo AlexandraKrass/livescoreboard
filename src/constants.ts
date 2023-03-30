@@ -5,7 +5,7 @@ interface Team {
     isFinished: boolean;
     homeScore: number;
     awayScore: number;
-    goalsHomeTeam?: number[];
-    goalsAwayTeam?: number[];
+    goalsHomeTeam: number[];
+    goalsAwayTeam: number[];
  }
  export type { Team }

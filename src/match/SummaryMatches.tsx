@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 //constants
 import { Team } from '../constants'
 

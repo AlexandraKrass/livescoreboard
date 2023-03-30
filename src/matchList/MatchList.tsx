@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 //components
 import LiveMatch from '../match/LiveMatch'
@@ -18,22 +18,22 @@ const MatchList = () => {
                 item.homeScore = homeScore;
                 item.awayScore = awayScore;
             }
+
         })
         setTeamList([...matchesList]);
     }
-    
+
     return (
         <div>
             <div>
-                <div>
-                    <SummaryList matches={matchesList}/>
-                </div>
-                
-                <div>
+                <SummaryList matches={matchesList} />
+            </div>
+
+            <div>
                 <h2 className="board-title">Live Score Board</h2>
                 {matchesList.map(item => (
                     <LiveMatch
-                        id={item.idMatch}
+                        idMatch={item.idMatch}
                         key={item.idMatch}
                         homeTeam={item.homeTeam}
                         awayTeam={item.awayTeam}
@@ -45,7 +45,6 @@ const MatchList = () => {
                         handleMatch={handleMatches}
                     />
                 ))}
-                </div>
             </div>
         </div>
     )
