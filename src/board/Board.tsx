@@ -32,7 +32,8 @@ const Board = () => {
                                 awayTeam={item.awayTeam}
                                 homeScore={item.homeScore}
                                 awayScore={item.awayScore}
-                                goalSeconds={item.goalSeconds}
+                                goalsHomeTeam={item.goalsHomeTeam}
+                                goalsAwayTeam={item.goalsAwayTeam}
                                 handleMatch={handleMatches}
                             />
                         ): 

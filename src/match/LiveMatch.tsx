@@ -7,13 +7,15 @@ interface MatchProps {
     awayTeam: string
     homeScore: number
     awayScore: number
-    goalSeconds: number[]
+    goalsHomeTeam?: number[]
+    goalsAwayTeam?: number[]
     handleMatch(id: number): void 
 }
 
-const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalSeconds, handleMatch }: MatchProps) => {
+const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, handleMatch }: MatchProps) => {
     const timeMatch = 90;
-    const copyGoalSeconds = new Set(goalSeconds);
+    const dataGoalsHome = new Set(goalsHomeTeam);
+    const dataGoalsAway = new Set(goalsAwayTeam);
 
     const [seconds, setSeconds] = useState(0);
     const [homeScoreTeam, setScoreHomTeam] = useState(homeScore);
@@ -28,8 +30,11 @@ const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalSeconds, 
             finishGame();
         } 
 
-        if (copyGoalSeconds.has(seconds)) {
+        if (dataGoalsHome.has(seconds)) {
             setScoreHomTeam((homeScoreTeam) => homeScoreTeam + 1);
+        }
+        if (dataGoalsAway.has(seconds)) {
+            setScoreIntTeam((awayScoreTeam) => awayScoreTeam + 1);
         }
     }, [seconds]);
 
@@ -55,7 +60,7 @@ const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalSeconds, 
         <div className="match-item">
             <p className="match-info">{homeTeam} - {awayTeam}: {homeScoreTeam}–{awayScoreTeam}</p>
             <button className="match-started" onClick={startTimer}>Start game</button>
-            {`${seconds}:00`}
+            <p className="match-time">{`${seconds}:00`}</p>
         </div>
 
     )
