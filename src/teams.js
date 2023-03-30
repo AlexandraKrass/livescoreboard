@@ -1,3 +1,5 @@
+export const TIME_MATCH = 90;
+
 export const teams = [
     {
         idMatch: 101,

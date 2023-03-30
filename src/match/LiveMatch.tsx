@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+//react
+import React, { useState, useEffect, useRef, useCallback } from "react";
+
+//constants
+import { TIME_MATCH } from '../teams'
+
 import './LiveMatch.css';
 
 interface MatchProps {
@@ -13,28 +18,34 @@ interface MatchProps {
 }
 
 const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, handleMatch }: MatchProps) => {
-    const timeMatch = 90;
     const dataGoalsHome = new Set(goalsHomeTeam);
     const dataGoalsAway = new Set(goalsAwayTeam);
 
     const [seconds, setSeconds] = useState(0);
     const [homeScoreTeam, setScoreHomTeam] = useState(homeScore);
-    const [awayScoreTeam, setScoreIntTeam] = useState(awayScore);
+    const [awayScoreTeam, setScoreAwayTeam] = useState(awayScore);
 
     const timer = useRef<NodeJS.Timeout | null>(null);
 
+    const incrementHomeScore = useCallback(
+        (homeScoreTeam: number) => homeScoreTeam + 1, []
+    );
+      
+    const incrementAwayScore = useCallback(
+        (awayScoreTeam: number) => awayScoreTeam + 1, []
+    );
 
     useEffect(() => {
-        if (seconds >= timeMatch){
+        if (seconds >= TIME_MATCH){
             stopTimer();
             finishGame();
         } 
 
         if (dataGoalsHome.has(seconds)) {
-            setScoreHomTeam((homeScoreTeam) => homeScoreTeam + 1);
+            setScoreHomTeam(incrementHomeScore);
         }
         if (dataGoalsAway.has(seconds)) {
-            setScoreIntTeam((awayScoreTeam) => awayScoreTeam + 1);
+            setScoreAwayTeam(incrementAwayScore);
         }
     }, [seconds]);
 
