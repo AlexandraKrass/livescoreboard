@@ -14,10 +14,11 @@ interface MatchProps {
     awayScore: number
     goalsHomeTeam?: number[]
     goalsAwayTeam?: number[]
-    handleMatch(id: number): void 
+    isFinished: boolean
+    handleMatch(id: number, homeScoreTeam: number, awayScoreTeam: number): void 
 }
 
-const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, handleMatch }: MatchProps) => {
+const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, isFinished, handleMatch }: MatchProps) => {
     const dataGoalsHome = new Set(goalsHomeTeam);
     const dataGoalsAway = new Set(goalsAwayTeam);
 
@@ -64,14 +65,19 @@ const LiveMatch = ({ id, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam
     };
 
     const finishGame = () => {
-        handleMatch(id)
+        handleMatch(id, homeScoreTeam, awayScoreTeam)
     };
 
     return (
         <div className="match-item">
             <p className="match-info">{homeTeam} - {awayTeam}: {homeScoreTeam}–{awayScoreTeam}</p>
-            <button className="match-started" onClick={startTimer}>Start game</button>
-            <p className="match-time">{`${seconds}:00`}</p>
+            { isFinished ? 
+
+                <p className="match-finished">Finished</p>
+                :
+                <button className="match-btn-started" onClick={startTimer}>Start game</button>
+            }
+            {!isFinished && <p className="match-time">{`${seconds}:00`}</p>}
         </div>
 
     )

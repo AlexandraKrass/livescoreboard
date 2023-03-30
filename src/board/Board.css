@@ -7,7 +7,7 @@ body {
     background-color: #ECEDFC;
 }
 .board-container{
-    min-width: 600px;
+    min-width: 760px;
     min-height: 400px;
     padding: 32px;
 }

@@ -8,7 +8,7 @@ export const teams = [
         isFinished: false,
         homeScore: 0,
         awayScore: 0,
-        goalsAwayTeam: [9, 17, 26, 32, 64]
+        goalsAwayTeam: [5, 17, 26, 32, 64]
     },    
     {
         idMatch: 102,
@@ -17,7 +17,7 @@ export const teams = [
         isFinished: false,
         homeScore: 0,
         awayScore: 0,
-        goalsHomeTeam: [6, 10, 14, 20, 28, 33, 40, 55, 59, 68],
+        goalsHomeTeam: [4, 7, 14, 20, 28, 33, 40, 55, 59, 68],
         goalsAwayTeam: [18, 36]
     },    
     {
@@ -27,7 +27,7 @@ export const teams = [
         isFinished: false,
         homeScore: 0,
         awayScore: 0,
-        goalsHomeTeam: [12, 21],
+        goalsHomeTeam: [4, 21],
         goalsAwayTeam: [15, 24]
     },    
     {
@@ -49,6 +49,5 @@ export const teams = [
         awayScore: 0,
         goalsHomeTeam: [25, 39, 43],
         goalsAwayTeam: [27]
-    },    
-
+    }
 ]
