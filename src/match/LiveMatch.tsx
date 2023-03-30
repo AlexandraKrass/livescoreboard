@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 
 //constants
-import { TIME_MATCH } from '../teams'
+import { TIME_MATCH } from '../matches'
 
 import './LiveMatch.css';
 

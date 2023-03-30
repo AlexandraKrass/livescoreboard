@@ -5,33 +5,33 @@ import LiveMatch from '../match/LiveMatch'
 import SummaryList from '../match/SummaryMatches'
 
 //constants
-import { teams } from '../teams';
+import { matches } from '../matches';
 
 const MatchList = () => {
 
-    const [teamsList, setTeamList] = useState([...teams]);
+    const [matchesList, setTeamList] = useState([...matches]);
 
     const handleMatches = (id: number, homeScore: number, awayScore: number): void => {
-        teamsList.map((item) => {
+        matchesList.map((item) => {
             if (item.idMatch === id) {
                 item.isFinished = true;
                 item.homeScore = homeScore;
                 item.awayScore = awayScore;
             }
         })
-        setTeamList([...teamsList]);
+        setTeamList([...matchesList]);
     }
     
     return (
         <div>
             <div>
                 <div>
-                    <SummaryList teams={teamsList}/>
+                    <SummaryList matches={matchesList}/>
                 </div>
                 
                 <div>
                 <h2 className="board-title">Live Score Board</h2>
-                {teamsList.map(item => (
+                {matchesList.map(item => (
                     <LiveMatch
                         id={item.idMatch}
                         key={item.idMatch}

@@ -1,6 +1,6 @@
 export const TIME_MATCH = 90;
 
-export const teams = [
+export const matches = [
     {
         idMatch: 101,
         homeTeam: "Mexico",

@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import { Team } from '../constants'
 
 interface MatchListProps {
-    teams: Team[];
+    matches: Team[];
 }
 
-const SummaryMatches = ({ teams }: MatchListProps) => {
-    const filteredTeams = [...teams].filter((team) => team.isFinished);
+const SummaryMatches = ({ matches }: MatchListProps) => {
+    const filteredTeams = [...matches].filter((team) => team.isFinished);
 
     const sortedTeams = filteredTeams.sort((team1, team2) => {
         const team1TotalScore = team1.homeScore + team1.awayScore;
@@ -18,7 +18,7 @@ const SummaryMatches = ({ teams }: MatchListProps) => {
 
     return (
         <div>
-            {filteredTeams.length ? <h2>Summary of games</h2> : null}
+            {filteredTeams.length ? <h2>Summary of matches</h2> : null}
             {sortedTeams.map((item) =>
                 <p key={item.idMatch} className="match-info">
                     {item.homeTeam} - {item.awayTeam}: {item.homeScore}–{item.awayScore}
