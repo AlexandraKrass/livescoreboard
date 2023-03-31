@@ -1,8 +1,8 @@
 //constants
-import { Team } from '../constants'
+import { MatchList } from '../constants'
 
 interface MatchListProps {
-    matches: Team[];
+    matches: MatchList[];
 }
 
 const SummaryMatches = ({ matches }: MatchListProps) => {

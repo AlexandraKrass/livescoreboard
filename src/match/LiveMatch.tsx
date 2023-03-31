@@ -3,15 +3,18 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 //constants
 import { TIME_MATCH } from '../matches'
-import { Team } from '../constants'
+import { MatchList } from '../constants'
 
 import './LiveMatch.css';
 
 interface MatchProps {
+    match: MatchList
     handleMatch(id: number, homeScoreTeam: number, awayScoreTeam: number): void 
 }
 
-const LiveMatch = ({ idMatch, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, isFinished, handleMatch}: Team & MatchProps) => {
+const LiveMatch = ({ match, handleMatch}: MatchProps) => {
+    const { idMatch, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, isFinished } = match;
+
     const dataGoalsHome = new Set(goalsHomeTeam);
     const dataGoalsAway = new Set(goalsAwayTeam);
 

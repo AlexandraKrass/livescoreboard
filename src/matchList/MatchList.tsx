@@ -31,17 +31,10 @@ const MatchList = () => {
 
             <div>
                 <h2 className="board-title">Live Score Board</h2>
-                {matchesList.map(item => (
+                {matchesList.map(match => (
                     <LiveMatch
-                        idMatch={item.idMatch}
-                        key={item.idMatch}
-                        homeTeam={item.homeTeam}
-                        awayTeam={item.awayTeam}
-                        homeScore={item.homeScore}
-                        awayScore={item.awayScore}
-                        goalsHomeTeam={item.goalsHomeTeam}
-                        goalsAwayTeam={item.goalsAwayTeam}
-                        isFinished={item.isFinished}
+                        key={match.idMatch}
+                        match={match}
                         handleMatch={handleMatches}
                     />
                 ))}

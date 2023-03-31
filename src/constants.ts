@@ -1,4 +1,4 @@
-interface Team {
+interface MatchList {
     idMatch: number;
     homeTeam: string;
     awayTeam: string;
@@ -8,4 +8,4 @@ interface Team {
     goalsHomeTeam: number[];
     goalsAwayTeam: number[];
  }
- export type { Team }
+ export type { MatchList }
