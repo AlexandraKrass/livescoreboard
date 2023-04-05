@@ -1,6 +1,6 @@
 //components
 import MatchList from '../matchList/MatchList';
-import './Board.css';
+import './Board.scss';
 
 const Board = () => {
 

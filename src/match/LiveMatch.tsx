@@ -3,16 +3,16 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 //constants
 import { TIME_MATCH } from '../matches'
-import { MatchList } from '../constants'
+import { MatchType } from '../constants'
 
-import './LiveMatch.css';
+import './LiveMatch.scss';
 
 interface MatchProps {
-    match: MatchList
-    handleMatch(id: number, homeScoreTeam: number, awayScoreTeam: number): void 
+    match: MatchType
+    handleMatch(id: number, homeScoreTeam: number, awayScoreTeam: number): void
 }
 
-const LiveMatch = ({ match, handleMatch}: MatchProps) => {
+const LiveMatch = ({ match, handleMatch }: MatchProps) => {
     const { idMatch, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, isFinished } = match;
 
     const dataGoalsHome = new Set(goalsHomeTeam);
@@ -33,17 +33,11 @@ const LiveMatch = ({ match, handleMatch}: MatchProps) => {
     );
 
     useEffect(() => {
-        if (seconds >= TIME_MATCH) {
-            stopTimer();
-            finishGame();
-        }
+        if (seconds >= TIME_MATCH) finishGame();
 
-        if (dataGoalsHome.has(seconds)) {
-            setScoreHomTeam(incrementHomeScore);
-        }
-        if (dataGoalsAway.has(seconds)) {
-            setScoreAwayTeam(incrementAwayScore);
-        }
+        if (dataGoalsHome.has(seconds)) setScoreHomTeam(incrementHomeScore);
+        if (dataGoalsAway.has(seconds)) setScoreAwayTeam(incrementAwayScore);
+
     }, [seconds]);
 
     const startTimer = () => {
@@ -61,18 +55,25 @@ const LiveMatch = ({ match, handleMatch}: MatchProps) => {
     };
 
     const finishGame = () => {
+        stopTimer();
         handleMatch(idMatch, homeScoreTeam, awayScoreTeam)
     };
 
     return (
         <div className="match-item">
-            <p className="match-info">{homeTeam} - {awayTeam}: {homeScoreTeam}–{awayScoreTeam}</p>
-            {isFinished ?
-                <p className="match-finished">Finished</p>
-                :
-                <button className="match-btn-started" onClick={startTimer}>Start game</button>
+            <div className="match-info">
+                {homeTeam} - {awayTeam}:
+                <button className="btn-add-goal" onClick={() => setScoreHomTeam(incrementHomeScore)}> + </button>
+                {homeScoreTeam}
+                –
+                {awayScoreTeam}
+                <button className="btn-add-goal" onClick={() => setScoreAwayTeam(incrementAwayScore)}> + </button>
+            </div>
+            {seconds >= 3 ? 
+            <button className="match-btn btn-finished" onClick={() => finishGame()}>Finish Game</button>
+                : <button className="match-btn btn-started" onClick={startTimer}>Start game</button>
             }
-            {!isFinished && <p className="match-time">{`${seconds}:00`}</p>}
+            <p className="match-time">{`${seconds}:00`}</p>
         </div>
 
     )

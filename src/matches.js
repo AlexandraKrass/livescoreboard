@@ -1,4 +1,4 @@
-export const TIME_MATCH = 90;
+export const TIME_MATCH = 8;
 
 export const matches = [
     {
@@ -8,7 +8,6 @@ export const matches = [
         isFinished: false,
         homeScore: 0,
         awayScore: 0,
-        goalsHomeTeam: [],
         goalsAwayTeam: [5, 17, 26, 32, 64]
     },    
     {
@@ -28,7 +27,6 @@ export const matches = [
         isFinished: false,
         homeScore: 0,
         awayScore: 0,
-        goalsHomeTeam: [4, 21],
         goalsAwayTeam: [15, 24]
     },    
     {

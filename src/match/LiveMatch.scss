@@ -15,21 +15,14 @@
     width: 100px;
 }
 .match-info{
-    margin: 0;
-    width: 300px;
-}
+    display: flex;
+    align-items: center;
 
-.match-finished{
-    background: transparent;
-    color: #4247e5;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 0em;
-    margin: 0 24px;
+    margin: 0;
+    min-width: 420px;
 }
-.match-btn-started{
+.match-btn{
     cursor: pointer;
-    color: #4247e5;
     font-size: 16px;
     line-height: 22px;
     letter-spacing: 0em;
@@ -39,6 +32,24 @@
     min-width: 106px;
     width: auto;
     height: 48px;
-    background: white;
     border-radius: 12px;
+}
+.btn-finished{
+    color: white;
+    background-color: #4247e5;
+}
+.btn-started{
+    color: #4247e5;
+    background: white;
+}
+.btn-add-goal{
+    cursor: pointer;
+    margin: 0 12px;
+    border: none;
+
+    width: 26px;
+    height: 26px;
+    border-radius: 50px;
+    color: #4247e5;
+    background: white;
 }
