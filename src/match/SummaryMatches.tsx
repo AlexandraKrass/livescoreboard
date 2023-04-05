@@ -5,7 +5,7 @@ interface MatchListProps {
     matches: MatchType[];
 }
 
-const SummaryMatches = ({ matches }: MatchListProps) => {
+const SummaryMatches: React.FC<MatchListProps> = ({ matches }) => {
     const filteredTeams = [...matches].filter((team) => team.isFinished);
 
     const sortedTeams = filteredTeams.sort((team1, team2) => {

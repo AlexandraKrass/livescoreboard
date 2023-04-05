@@ -1,5 +1,5 @@
 //react
-import { useState, useEffect, useRef, useCallback } from "react";
+import { FC, useState, useEffect, useRef, useCallback } from "react";
 
 //constants
 import { TIME_MATCH } from '../matches'
@@ -12,7 +12,7 @@ interface MatchProps {
     handleMatch(id: number, homeScoreTeam: number, awayScoreTeam: number): void
 }
 
-const LiveMatch = ({ match, handleMatch }: MatchProps) => {
+const LiveMatch: FC<MatchProps> = ({ match, handleMatch }) => {
     const { idMatch, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, isFinished } = match;
 
     const dataGoalsHome = new Set(goalsHomeTeam);
