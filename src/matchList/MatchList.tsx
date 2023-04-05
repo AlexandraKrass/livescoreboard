@@ -6,31 +6,34 @@ import SummaryList from '../match/SummaryMatches'
 
 //constants
 import { matches } from '../matches';
-import { MatchType } from '../constants'
+import { IMatch } from '../types/types'
 import './MatchList.scss'
 
 const MatchList = () => {
     const homeTeam = useRef<HTMLInputElement>(null);
     const awayTeam = useRef<HTMLInputElement>(null);
 
-    const [matchesList, setMatchList] = useState<MatchType[]>([...matches]);
-    const [addMatch, addNewMatch] = useState(false);
+    const [matchesList, setMatchList] = useState<IMatch[]>([...matches]);
+    const [addMatch, addNewMatch] = useState<boolean>(false);
 
     const handleMatches = (id: number, homeScore: number, awayScore: number) => {
-        matchesList.map((item) => {
-            if (item.idMatch === id) {
-                item.isFinished = true;
-                item.homeScore = homeScore;
-                item.awayScore = awayScore;
+        const updatedMatchesList = matchesList.map((match) => {
+            if (match.idMatch === id) {
+              return {
+                ...match,
+                homeScore,
+                awayScore,
+                isFinished: true,
+              };
             }
-
-        })
-        setMatchList([...matchesList]);
+            return match;
+          });
+        setMatchList([...updatedMatchesList]);
     }
 
     const updateMatchesList = () => {
         let newMatch = {
-            idMatch: 106,
+            idMatch: Date.now(),
             homeTeam: homeTeam.current?.value || '',
             awayTeam: awayTeam.current?.value || '',
             isFinished: false,

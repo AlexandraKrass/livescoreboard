@@ -3,24 +3,27 @@ import { FC, useState, useEffect, useRef, useCallback } from "react";
 
 //constants
 import { TIME_MATCH } from '../matches'
-import { MatchType } from '../constants'
+import { IMatch } from '../types/types'
+
+//components
+import ProgressBar from '../progress-bar/ProgressBar'
 
 import './LiveMatch.scss';
 
 interface MatchProps {
-    match: MatchType
+    match: IMatch
     handleMatch(id: number, homeScoreTeam: number, awayScoreTeam: number): void
 }
 
 const LiveMatch: FC<MatchProps> = ({ match, handleMatch }) => {
-    const { idMatch, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam, isFinished } = match;
+    const { idMatch, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam } = match;
 
     const dataGoalsHome = new Set(goalsHomeTeam);
     const dataGoalsAway = new Set(goalsAwayTeam);
 
     const [seconds, setSeconds] = useState(0);
-    const [homeScoreTeam, setScoreHomTeam] = useState(homeScore);
-    const [awayScoreTeam, setScoreAwayTeam] = useState(awayScore);
+    const [homeScoreTeam, setScoreHomTeam] = useState<number>(homeScore);
+    const [awayScoreTeam, setScoreAwayTeam] = useState<number>(awayScore);
 
     const timer = useRef<NodeJS.Timeout | null>(null);
 
@@ -68,12 +71,22 @@ const LiveMatch: FC<MatchProps> = ({ match, handleMatch }) => {
                 –
                 {awayScoreTeam}
                 <button className="btn-add-goal" onClick={() => setScoreAwayTeam(incrementAwayScore)}> + </button>
+                {seconds >= 3 ?
+                    <button className="match-btn btn-finished" onClick={() => finishGame()}>Finish Game</button>
+                    : <button className="match-btn btn-started" onClick={startTimer}>Start game</button>
+                }
             </div>
-            {seconds >= 3 ? 
-            <button className="match-btn btn-finished" onClick={() => finishGame()}>Finish Game</button>
-                : <button className="match-btn btn-started" onClick={startTimer}>Start game</button>
+
+            {seconds >= 1 && (
+                <div className="match-progress">
+                    <p className="match-time">
+                        {`Match time: ${seconds}:00 (${seconds > (TIME_MATCH / 2) ? '2nd half' : '1st half'})`}
+                    </p>
+                    <ProgressBar currentTime={seconds} finalTime={TIME_MATCH} />
+                </div>
+            )
             }
-            <p className="match-time">{`${seconds}:00`}</p>
+
         </div>
 
     )

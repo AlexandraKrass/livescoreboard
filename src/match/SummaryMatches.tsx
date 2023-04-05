@@ -1,8 +1,8 @@
 //constants
-import { MatchType } from '../constants'
+import { IMatch } from '../types/types'
 
 interface MatchListProps {
-    matches: MatchType[];
+    matches: IMatch[];
 }
 
 const SummaryMatches: React.FC<MatchListProps> = ({ matches }) => {

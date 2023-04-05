@@ -8,7 +8,7 @@ function App() {
     <div className="App App-header">
       <Board>
           <MatchList />
-        </Board>
+      </Board>
     </div>
   );
 }

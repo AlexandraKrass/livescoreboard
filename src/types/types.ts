@@ -1,4 +1,4 @@
-interface MatchType {
+export interface IMatch {
     idMatch: number;
     homeTeam: string;
     awayTeam: string;
@@ -7,5 +7,4 @@ interface MatchType {
     awayScore: number;
     goalsHomeTeam?: number[];
     goalsAwayTeam?: number[];
- }
- export type { MatchType }
+}

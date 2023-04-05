@@ -1,4 +1,4 @@
-export const TIME_MATCH = 8;
+export const TIME_MATCH = 90;
 
 export const matches = [
     {
