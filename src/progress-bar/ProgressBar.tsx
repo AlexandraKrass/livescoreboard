@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 
 interface IProgressBar {
     currentTime: number;
@@ -6,11 +6,7 @@ interface IProgressBar {
 }
 
 const ProgressBar: FC<IProgressBar> = ({ currentTime, finalTime }) => {
-    const [currentProgress, setCurrentProgress] = useState<number>(0);
-
-    useEffect(() => {
-        setCurrentProgress(() => (currentTime * 100) / finalTime);
-    }, [currentTime])
+    const currentProgress = (currentTime * 100) / finalTime;
 
     const containerStyles: React.CSSProperties = {
       height: 10,
