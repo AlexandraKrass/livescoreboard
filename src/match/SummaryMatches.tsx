@@ -9,8 +9,8 @@ const SummaryMatches: React.FC<MatchListProps> = ({ matches }) => {
     const filteredTeams = [...matches].filter((team) => team.isFinished);
 
     const sortedTeams = filteredTeams.sort((team1, team2) => {
-        const team1TotalScore = team1.homeScore + team1.awayScore;
-        const team2TotalScore = team2.homeScore + team2.awayScore;
+        const team1TotalScore = (team1.homeScore ?? 0) + (team1.awayScore ?? 0);
+        const team2TotalScore = (team2.homeScore ?? 0) + (team2.awayScore ?? 0);
         return team2TotalScore - team1TotalScore;
     });
 

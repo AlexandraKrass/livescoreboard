@@ -6,8 +6,6 @@ export const matches = [
         homeTeam: "Mexico",
         awayTeam: "Canada",
         isFinished: false,
-        homeScore: 0,
-        awayScore: 0,
         goalsAwayTeam: [5, 17, 26, 32, 64]
     },    
     {
@@ -15,8 +13,6 @@ export const matches = [
         homeTeam: "Spain",
         awayTeam: "Brazil",
         isFinished: false,
-        homeScore: 0,
-        awayScore: 0,
         goalsHomeTeam: [4, 7, 14, 20, 28, 33, 40, 55, 59, 68],
         goalsAwayTeam: [18, 36]
     },    
@@ -25,8 +21,6 @@ export const matches = [
         homeTeam: "Germany",
         awayTeam: "France",
         isFinished: false,
-        homeScore: 0,
-        awayScore: 0,
         goalsAwayTeam: [15, 24]
     },    
     {
@@ -34,8 +28,6 @@ export const matches = [
         homeTeam: "Uruguay",
         awayTeam: "Italy",
         isFinished: false,
-        homeScore: 0,
-        awayScore: 0,
         goalsHomeTeam: [11, 22, 33, 44, 55, 66],
         goalsAwayTeam: [6, 12, 18, 24, 32, 60]
     },    
@@ -44,8 +36,6 @@ export const matches = [
         homeTeam: "Argentina",
         awayTeam: "Australia",
         isFinished: false,
-        homeScore: 0,
-        awayScore: 0,
         goalsHomeTeam: [25, 39, 43],
         goalsAwayTeam: [27]
     }

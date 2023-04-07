@@ -16,14 +16,14 @@ interface MatchProps {
 }
 
 const LiveMatch: FC<MatchProps> = ({ match, handleMatch }) => {
-    const { idMatch, homeTeam, awayTeam, homeScore, awayScore, goalsHomeTeam, goalsAwayTeam } = match;
+    const { idMatch, homeTeam, awayTeam, goalsHomeTeam, goalsAwayTeam } = match;
 
     const dataGoalsHome = new Set(goalsHomeTeam);
     const dataGoalsAway = new Set(goalsAwayTeam);
 
-    const [seconds, setSeconds] = useState(0);
-    const [homeScoreTeam, setScoreHomTeam] = useState<number>(homeScore);
-    const [awayScoreTeam, setScoreAwayTeam] = useState<number>(awayScore);
+    const [seconds, setSeconds] = useState<number>(0);
+    const [homeScoreTeam, setScoreHomTeam] = useState<number>(0);
+    const [awayScoreTeam, setScoreAwayTeam] = useState<number>(0);
 
     const timer = useRef<NodeJS.Timeout | null>(null);
 

@@ -14,21 +14,20 @@ const MatchList = () => {
     const awayTeam = useRef<HTMLInputElement>(null);
 
     const [matchesList, setMatchList] = useState<IMatch[]>([...matches]);
-    const [addMatch, addNewMatch] = useState<boolean>(false);
+    const [finishedMatches, setFinishedMatches] = useState<IMatch[]>([]);
+    const [newMatch, setNewMatch] = useState<boolean>(false);
 
     const handleMatches = (id: number, homeScore: number, awayScore: number) => {
-        const updatedMatchesList = matchesList.map((match) => {
+        const updatedMatchesList = matchesList.filter((match) => {
             if (match.idMatch === id) {
-              return {
-                ...match,
-                homeScore,
-                awayScore,
-                isFinished: true,
-              };
+              return (
+                match.homeScore = homeScore,
+                match.awayScore = awayScore,
+                match.isFinished = true
+              );
             }
-            return match;
           });
-        setMatchList([...updatedMatchesList]);
+        setFinishedMatches([...finishedMatches, ...updatedMatchesList]);
     }
 
     const updateMatchesList = () => {
@@ -42,26 +41,23 @@ const MatchList = () => {
         }
 
         setMatchList([...matchesList, newMatch]);
-        addNewMatch(!addMatch)
+        setNewMatch(!newMatch)
     }
 
     return (
         <div>
-            <div>
-                <SummaryList matches={matchesList} />
-            </div>
-
+            {!!finishedMatches.length && <SummaryList matches={finishedMatches} />}
             <div>
                 <h2 className="board-title">Live Score Board</h2>
                 {matchesList.map(match => (
-                    !match.isFinished &&
+                    !match?.isFinished &&
                     <LiveMatch
                         key={match.idMatch}
                         match={match}
                         handleMatch={handleMatches}
                     />
                 ))}
-                {addMatch &&
+                {newMatch &&
                     <div>
                         <label className="label-text">
                             Home Team:
@@ -73,10 +69,10 @@ const MatchList = () => {
                         </label>
                     </div>
                 }
-                {addMatch ? 
+                {newMatch ? 
                     <button className="btn" onClick={updateMatchesList}> Save match </button>
                     :
-                    <button className="btn" onClick={() => addNewMatch(!addMatch)}> Add one more match </button>
+                    <button className="btn" onClick={() => setNewMatch(!newMatch)}> Add one more match </button>
                 }
 
             </div>
