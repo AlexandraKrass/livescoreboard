@@ -1,19 +1,19 @@
-export const TIME_MATCH = 90;
+const TIME_MATCH = 90;
 
-export const matches = [
+const matches = [
     {
         idMatch: 101,
         homeTeam: "Mexico",
         awayTeam: "Canada",
         isFinished: false,
-        goalsAwayTeam: [5, 17, 26, 32, 64]
+        goalsAwayTeam: [17, 26, 32, 64, 88]
     },    
     {
         idMatch: 102,
         homeTeam: "Spain",
         awayTeam: "Brazil",
         isFinished: false,
-        goalsHomeTeam: [4, 7, 14, 20, 28, 33, 40, 55, 59, 68],
+        goalsHomeTeam: [14, 20, 28, 33, 40, 55, 59, 68, 79, 86],
         goalsAwayTeam: [18, 36]
     },    
     {
@@ -21,6 +21,7 @@ export const matches = [
         homeTeam: "Germany",
         awayTeam: "France",
         isFinished: false,
+        goalsHomeTeam: [20, 57],
         goalsAwayTeam: [15, 24]
     },    
     {
@@ -29,7 +30,7 @@ export const matches = [
         awayTeam: "Italy",
         isFinished: false,
         goalsHomeTeam: [11, 22, 33, 44, 55, 66],
-        goalsAwayTeam: [6, 12, 18, 24, 32, 60]
+        goalsAwayTeam: [24, 32, 40, 50, 60, 70]
     },    
     {
         idMatch: 105,
@@ -40,3 +41,5 @@ export const matches = [
         goalsAwayTeam: [27]
     }
 ]
+
+export { TIME_MATCH, matches }

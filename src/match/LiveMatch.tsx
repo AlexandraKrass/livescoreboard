@@ -1,5 +1,5 @@
 //react
-import { FC, useState, useEffect, useRef, useCallback } from "react";
+import { FC, useState, useEffect, useRef, useMemo, useCallback } from "react";
 
 //constants
 import { TIME_MATCH } from '../matches'
@@ -18,14 +18,19 @@ interface MatchProps {
 const LiveMatch: FC<MatchProps> = ({ match, handleMatch }) => {
     const { idMatch, homeTeam, awayTeam, goalsHomeTeam, goalsAwayTeam } = match;
 
-    const dataGoalsHome = new Set(goalsHomeTeam);
-    const dataGoalsAway = new Set(goalsAwayTeam);
-
+    const [startMatch, setStartMatch] = useState(false);
     const [seconds, setSeconds] = useState<number>(0);
     const [homeScoreTeam, setScoreHomTeam] = useState<number>(0);
     const [awayScoreTeam, setScoreAwayTeam] = useState<number>(0);
 
     const timer = useRef<NodeJS.Timeout | null>(null);
+
+    const MemoizedTransformTime = useMemo(() => {
+      return (percentages: number[]) => percentages.map((num: number) => Math.trunc((num * TIME_MATCH) / 100)); 
+    }, []);
+    
+    const timeGoalsHomeTeam = new Set(MemoizedTransformTime(goalsHomeTeam ?? []));
+    const timeGoalsAwayTeam = new Set(MemoizedTransformTime(goalsAwayTeam ?? []));
 
     const incrementHomeScore = useCallback(
         (homeScoreTeam: number) => homeScoreTeam + 1, []
@@ -38,13 +43,14 @@ const LiveMatch: FC<MatchProps> = ({ match, handleMatch }) => {
     useEffect(() => {
         if (seconds >= TIME_MATCH) finishGame();
 
-        if (dataGoalsHome.has(seconds)) setScoreHomTeam(incrementHomeScore);
-        if (dataGoalsAway.has(seconds)) setScoreAwayTeam(incrementAwayScore);
+        if (timeGoalsHomeTeam.has(seconds)) setScoreHomTeam(incrementHomeScore);
+        if (timeGoalsAwayTeam.has(seconds)) setScoreAwayTeam(incrementAwayScore);
 
     }, [seconds]);
 
     const startTimer = () => {
         if (!timer.current) {
+            setStartMatch(true);
             timer.current = setInterval(() => {
                 setSeconds((seconds) => seconds + 1);
             }, 1000);
@@ -55,6 +61,7 @@ const LiveMatch: FC<MatchProps> = ({ match, handleMatch }) => {
         if (timer.current) clearInterval(timer.current);
         timer.current = null;
         setSeconds(0);
+        setStartMatch(false);
     };
 
     const finishGame = () => {
@@ -77,7 +84,7 @@ const LiveMatch: FC<MatchProps> = ({ match, handleMatch }) => {
                 }
             </div>
 
-            {seconds >= 1 && (
+            {startMatch && (
                 <div className="match-progress">
                     <p className="match-time">
                         {`Match time: ${seconds}:00 (${seconds > (TIME_MATCH / 2) ? '2nd half' : '1st half'})`}
