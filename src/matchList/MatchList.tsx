@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 //components
 import LiveMatch from '../match/LiveMatch'
-import SummaryList from '../match/SummaryMatches'
+import SummaryMatches from '../summaryMatches/SummaryMatches'
 
 //constants
 import { matches } from '../matches';
@@ -46,7 +46,7 @@ const MatchList = () => {
 
     return (
         <div>
-            {!!finishedMatches.length && <SummaryList matches={finishedMatches} />}
+            {!!finishedMatches.length && <SummaryMatches matches={finishedMatches} />}
             <div>
                 <h2 className="board-title">Live Score Board</h2>
                 {matchesList.map(match => (

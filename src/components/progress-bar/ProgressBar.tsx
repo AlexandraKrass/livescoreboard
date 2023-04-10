@@ -9,10 +9,10 @@ const ProgressBar: FC<IProgressBar> = ({ currentTime, finalTime }) => {
     const currentProgress = (currentTime * 100) / finalTime;
 
     const containerStyles: React.CSSProperties = {
-      height: 10,
+      height: '12px',
       width: '100%',
       backgroundColor: "#4247e519",
-      borderRadius: 50,
+      borderRadius: '50px',
       margin: '0 0 10px'
     }
   
