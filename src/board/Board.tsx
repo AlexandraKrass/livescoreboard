@@ -1,12 +1,11 @@
 //react
-import React, { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 //components
-import MatchList from '../matchList/MatchList';
 import './Board.scss';
 
 interface BoardProps{
-    children?: React.ReactNode
+    children?: ReactNode
 }
 
 const Board: FC<BoardProps> = ({ children }) => {
