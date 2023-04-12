@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  padding: 40px 0 100px;
+}
+.lightTheme{
+  background-color: #ECEDFC;
+}
+.darkTheme{
+  background-color: #6f7684;
+}
+
+.btn{
+  border: none;
+  min-width: 60px;
+  background-color: transparent;
+  color: #4247E5;
+  cursor: pointer;
+  &:hover{
+      text-decoration: underline;
+  }
+}

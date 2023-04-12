@@ -4,12 +4,26 @@
     margin: auto;
 
 }
+
+.board-title{
+    font-size: 44px;
+}
+.light-title{
+    color: #2f35ff;
+}
+.dark-title{
+    color: #0e1039;
+}
+
 .board-container{
-    background-color: #ECEDFC;
     min-width: 760px;
     min-height: 400px;
     padding: 32px;
 }
-.board-title{
-    color: #4247E5;
+
+.dark-background{
+    background-color: #a3a6d5;
+}
+.light-background{
+    background-color: #ECEDFC;
 }

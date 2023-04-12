@@ -8,3 +8,8 @@ export interface IMatch {
     goalsHomeTeam?: number[];
     goalsAwayTeam?: number[];
 }
+
+export enum Theme {
+    Dark = 'Dark',
+    Light = 'Light',
+}
